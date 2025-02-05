@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.Long.max;
+
 @Service
 public class NoteService {
     private List<Note> noteList = new ArrayList<>();
+    private long maxId = -1L;
 
     static Note nullNote = new Note();
     static {
@@ -20,7 +23,14 @@ public class NoteService {
         return noteList;
     }
 
+    public long getMaxId(){
+        return maxId;
+    }
+
     public Note add(Note note){
+
+        maxId = max(note.getId(), maxId);
+
         Note findNode = getById(note.getId());
         if (findNode.getId() != -1){
             return findNode;
