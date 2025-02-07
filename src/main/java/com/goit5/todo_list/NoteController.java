@@ -38,18 +38,12 @@ public class NoteController {
             @RequestParam(name = "content", defaultValue = "Content") String content,
             HttpServletResponse resp) throws IOException {
 
-        Note newNote;
-        if (id == -1){
-            newNote = new Note();
-            newNote.setId(noteService.getMaxId()+1L);
-        }else{
-            newNote = noteService.getById(id);
-        }
-
+        Note newNote = new Note();
+        newNote.setId(id);
         newNote.setTitle(title);
         newNote.setContent(content);
 
-        noteService.add(newNote);
+        noteService.update(newNote);
 
         resp.sendRedirect("/note/list");
     }
