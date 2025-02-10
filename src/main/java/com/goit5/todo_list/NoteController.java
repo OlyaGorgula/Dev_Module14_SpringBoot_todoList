@@ -42,12 +42,7 @@ public class NoteController {
         newNote.setId(id);
         newNote.setTitle(title);
         newNote.setContent(content);
-
-        if (noteService.getById(id).getId() == -1){
-            noteService.save(newNote);
-        }else {
-            noteService.update(newNote);
-        }
+        noteService.save(newNote);
 
         resp.sendRedirect("/note/list");
     }
