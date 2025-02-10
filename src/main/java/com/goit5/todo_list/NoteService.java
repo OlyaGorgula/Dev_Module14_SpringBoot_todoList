@@ -21,10 +21,16 @@ public class NoteService {
     }
 
     public void deleteById(long id){
-        noteRepository.deleteById(""+id);
+        if (getById(id).getId() != -1) {
+            noteRepository.deleteById("" + id);
+        }
     }
 
-    public Note update(Note note){
+    public void update(Note note){
+        noteRepository.save(note);
+    }
+
+    public Note save(Note note){
         return noteRepository.save(note);
     }
 
