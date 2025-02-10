@@ -16,20 +16,25 @@ public class NoteService {
     }
 
     public void deleteById(long id){
-        if (getById(id).getId() != -1) {
+        if (getById(id) != null) {
             noteRepository.deleteById(String.valueOf(id));
         }
     }
 
-    public Note save(Note note){
+    public Note readById(long id){
+        Note findNote = getById(id);
+        return findNote == null ? new Note() : findNote;
+    }
+
+    public void save(Note note){
         Note findNote = getById(note.getId());
-        if (findNote.getId() == -1) {
+        if (findNote == null) {
             findNote = note;
         }else {
             findNote.setTitle(note.getTitle());
             findNote.setContent(note.getContent());
         }
-        return noteRepository.save(findNote);
+        noteRepository.save(findNote);
     }
 
     public Note getById(long id){
@@ -37,9 +42,7 @@ public class NoteService {
         if (findNote.isPresent()){
             return findNote.get();
         }
-        Note emptyNode = new Note();
-        emptyNode.setId(-1);
-        return emptyNode;
+        return null;
     }
 
 }

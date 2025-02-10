@@ -26,7 +26,7 @@ public class NoteController {
     public ModelAndView getEditNote(@RequestParam(name = "id", defaultValue = "-1") long id){
         ModelAndView result = new ModelAndView("edit");
 
-        result.addObject("note", noteService.getById(id));
+        result.addObject("note", noteService.readById(id));
 
         return result;
     }
