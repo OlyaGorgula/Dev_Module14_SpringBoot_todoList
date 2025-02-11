@@ -22,7 +22,7 @@ public class NoteService {
 
     public Note readById(Long id) {
         Note findNote = getById(id);
-        return findNote == null ? new Note() : findNote;
+        return (findNote == null) ? new Note() : findNote;
     }
 
     public void save(Note note) {
@@ -37,7 +37,7 @@ public class NoteService {
     }
 
     public Note getById(Long id) {
-        return id == null ? null : noteRepository.findById(id).orElse(null);
+        return (id == null) ? null : noteRepository.findById(id).orElse(null);
     }
 
 }
