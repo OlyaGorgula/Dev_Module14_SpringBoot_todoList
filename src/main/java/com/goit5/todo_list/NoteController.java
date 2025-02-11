@@ -15,7 +15,7 @@ public class NoteController {
     private final NoteService noteService;
 
     @GetMapping("/list")
-    public ModelAndView getListNote(){
+    public ModelAndView getListNote() {
         ModelAndView result = new ModelAndView("list");
 
         result.addObject("notes", noteService.listAll());
@@ -23,7 +23,7 @@ public class NoteController {
     }
 
     @GetMapping("/edit")
-    public ModelAndView getEditNote(@RequestParam(name = "id", required = false) Long id){
+    public ModelAndView getEditNote(@RequestParam(name = "id", required = false) Long id) {
         ModelAndView result = new ModelAndView("edit");
 
         result.addObject("note", noteService.readById(id));
