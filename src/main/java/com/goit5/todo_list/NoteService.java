@@ -17,7 +17,7 @@ public class NoteService {
 
     public void deleteById(Long id){
         if (getById(id) != null) {
-            noteRepository.deleteById(String.valueOf(id));
+            noteRepository.deleteById(id);
         }
     }
 
@@ -39,8 +39,7 @@ public class NoteService {
 
     public Note getById(Long id){
         if (id == null) return null;
-        Optional<Note> findNote = noteRepository.findById(id.toString());
-        return findNote.orElse(null);
+        return noteRepository.findById(id).orElse(null);
     }
 
 }
