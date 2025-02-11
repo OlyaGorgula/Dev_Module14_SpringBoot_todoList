@@ -1,15 +1,19 @@
 package com.goit5.todo_list;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "note")
 @Entity
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private long id;
+    private Long id;
 
     @Column(name = "title")
     private String title;

@@ -23,7 +23,7 @@ public class NoteController {
     }
 
     @GetMapping("/edit")
-    public ModelAndView getEditNote(@RequestParam(name = "id", defaultValue = "-1") long id){
+    public ModelAndView getEditNote(@RequestParam(name = "id", required = false) Long id){
         ModelAndView result = new ModelAndView("edit");
 
         result.addObject("note", noteService.readById(id));
@@ -33,7 +33,7 @@ public class NoteController {
 
     @PostMapping("/edit")
     public void postEditNote(
-            @RequestParam(name = "id", defaultValue = "-1") long id,
+            @RequestParam(name = "id", required = false) Long id,
             @RequestParam(name = "title", defaultValue = "Title") String title,
             @RequestParam(name = "content", defaultValue = "Content") String content,
             HttpServletResponse resp) throws IOException {
@@ -49,7 +49,7 @@ public class NoteController {
 
     @PostMapping("/delete")
     public void postDeleteNote(
-            @RequestParam(name = "id") long id,
+            @RequestParam(name = "id") Long id,
             HttpServletResponse resp) throws IOException {
 
         noteService.deleteById(id);

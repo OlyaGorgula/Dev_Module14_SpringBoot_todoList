@@ -15,13 +15,13 @@ public class NoteService {
         return noteRepository.findAll();
     }
 
-    public void deleteById(long id){
+    public void deleteById(Long id){
         if (getById(id) != null) {
             noteRepository.deleteById(String.valueOf(id));
         }
     }
 
-    public Note readById(long id){
+    public Note readById(Long id){
         Note findNote = getById(id);
         return findNote == null ? new Note() : findNote;
     }
@@ -37,12 +37,10 @@ public class NoteService {
         noteRepository.save(findNote);
     }
 
-    public Note getById(long id){
-        Optional<Note> findNote = noteRepository.findById(String.valueOf(id));
-        if (findNote.isPresent()){
-            return findNote.get();
-        }
-        return null;
+    public Note getById(Long id){
+        if (id == null) return null;
+        Optional<Note> findNote = noteRepository.findById(id.toString());
+        return findNote.orElse(null);
     }
 
 }
