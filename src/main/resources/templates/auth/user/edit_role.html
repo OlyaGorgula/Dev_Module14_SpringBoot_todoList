@@ -15,28 +15,32 @@
     <div class="card">
         <div class="card-header">
             <div th:replace="auth/fragments/fr_logout.html :: logout"></div>
+
             <div class="mb-2">
                 <a href="list" class="btn btn-sm btn-outline-primary mb-3">BACK</a>
             </div>
-            Update note
+            Update role
         </div>
 
         <form th:action="@{edit}" method="POST">
             <div class="card-body">
-                <label for="title" class="form-label">Title</label>
+
+                <label for="name" class="form-label">Name</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="title" name="title" th:value="${note.title}">
+                    <input type="text" class="form-control" id="name" name="name" th:value="${role.name}">
                 </div>
 
-                <label for="content" class="form-label">Content</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="content" name="content" th:value="${note.content}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="reservedBySystem"  th:checked="${role.reservedBySystem}" id="idChecked" disabled>
+                    <label class="form-check-label" for="idChecked">
+                        Reserved by system
+                    </label>
                 </div>
+
             </div>
 
             <div class="card-footer">
-                <input type="hidden"  name="name_role" th:value="${name_role}">
-                <input type="hidden"  name="id" th:value="${note.id}">
+                <input type="hidden"  name="id" th:value="${role.id}">
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
 

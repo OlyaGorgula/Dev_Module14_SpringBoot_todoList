@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<div th:fragment="logout" class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-primary" type="submit">Log Out</button>
+    </form>
+</div>
+</body>
+</html>

@@ -36,6 +36,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("com.h2database:h2")
 	implementation("org.flywaydb:flyway-core")
+
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
+	testImplementation("org.springframework.security:spring-security-test")
 }
 
 tasks.withType<Test> {

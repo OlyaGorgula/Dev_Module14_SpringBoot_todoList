@@ -1,5 +1,6 @@
-package com.goit5.todo_list;
+package com.goit5.todo_list.note;
 
+import com.goit5.todo_list.auth.entity.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,8 @@ public class Note {
 
     @Column(name = "content")
     private String content;
+
+    @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_role", referencedColumnName = "id")
+    private Role role;
 }
