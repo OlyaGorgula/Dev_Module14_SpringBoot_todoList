@@ -1,6 +1,5 @@
 package com.goit5.todo_list.auth.service;
 
-import com.goit5.todo_list.auth.AuthParams;
 import com.goit5.todo_list.auth.EnumRole;
 import com.goit5.todo_list.auth.UserByDefault;
 import com.goit5.todo_list.auth.entity.Role;
@@ -29,15 +28,14 @@ public class AuthService implements UserDetailsService {
         return usersRepository.findByEmail(username);
     }
 
-    public AuthParams registration(String email, String password) {
-
-        AuthParams authParams = new AuthParams();
+    public boolean registration(String email, String password) {
+        boolean isThereIsAlreadySuchAnEmail;
 
         Users user = usersRepository.findByEmail(email);
         if (user != null) {
-            authParams.setThereIsAlreadySuchAnEmail(true);
+            isThereIsAlreadySuchAnEmail = true;
         }else {
-            authParams.setThereIsAlreadySuchAnEmail(false);
+            isThereIsAlreadySuchAnEmail = false;
 
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -54,7 +52,7 @@ public class AuthService implements UserDetailsService {
             }
             usersRepository.save(newUser);
         }
-        return authParams;
+        return isThereIsAlreadySuchAnEmail;
     }
 
 }

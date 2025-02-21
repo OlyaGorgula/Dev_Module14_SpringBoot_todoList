@@ -1,6 +1,5 @@
 package com.goit5.todo_list.auth.entity.converter;
 
-import com.goit5.todo_list.auth.EnumYesNo;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
@@ -18,5 +17,10 @@ public class FieldReservedBySystemConverter implements AttributeConverter<Boolea
     @Override
     public Boolean convertToEntityAttribute(String dbData) {
         return EnumYesNo.Y.name().equals(dbData);
+    }
+
+    public enum EnumYesNo {
+        Y,
+        N
     }
 }

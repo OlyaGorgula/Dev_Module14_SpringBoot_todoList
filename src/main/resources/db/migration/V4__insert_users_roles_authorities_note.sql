@@ -5,7 +5,8 @@ INSERT INTO users (email, password, enabled) VALUES
 ('user1@i.ua', '{bcrypt}$2a$12$/UmCcwf07UC8aTTW.rv3Z.qWBmKXv8HO6lNNpfSb5bOXVQhqIYm8e', 'Y'),
 ('user2@i.ua', '{noop}123', 'Y'),
 ('user31@i.ua', '{noop}123', 'Y'),
-('user32@i.ua', '{noop}123', 'Y');
+('user32@i.ua', '{noop}123', 'Y'),
+('user', '{noop}jdbcDefault', 'Y');
 
 INSERT INTO role (name, reserved_by_system) VALUES
 ('ADMIN', 'Y'),
@@ -26,7 +27,8 @@ INSERT INTO user_role (id_user, id_role) VALUES
 ('6', '6'),
 ('6', '2'),
 ('7', '6'),
-('7', '2');
+('7', '2'),
+('8', '1');
 
 INSERT INTO note (title, content, id_role) VALUES
 ('Cook', 'Cook ...', '6'),

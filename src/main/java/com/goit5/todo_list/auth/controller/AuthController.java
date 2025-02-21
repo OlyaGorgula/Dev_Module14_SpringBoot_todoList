@@ -1,6 +1,5 @@
 package com.goit5.todo_list.auth.controller;
 
-import com.goit5.todo_list.auth.AuthParams;
 import com.goit5.todo_list.auth.service.AuthService;
 import com.goit5.todo_list.note.NoteService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,9 +37,7 @@ public class AuthController {
                              @RequestParam(name = "password") String password,
                              HttpServletResponse resp) throws IOException {
 
-        AuthParams authParams = authService.registration(username, password);
-
-        if (authParams.isThereIsAlreadySuchAnEmail()) {
+        if (authService.registration(username, password)) {
             resp.sendRedirect("/registration?isDuplicateEmail=true");
         } else {
             resp.sendRedirect("/login");
