@@ -17,16 +17,17 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService implements UserDetailsService {
+//public class AuthService implements UserDetailsService {
+public class AuthService {
     private final UserRepository usersRepository;
     private final RoleRepository roleRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserByDefault.isFirstRun(usersRepository, roleRepository);
-
-        return usersRepository.findByEmail(username);
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        UserByDefault.isFirstRun(usersRepository, roleRepository);
+//
+//        return usersRepository.findByEmail(username);
+//    }
 
     public boolean registration(String email, String password) {
         boolean isThereIsAlreadySuchAnEmail;
@@ -43,9 +44,7 @@ public class AuthService implements UserDetailsService {
             newUser.setEmail(email);
             newUser.setPassword("{bcrypt}" + passwordEncoder.encode(password));
             newUser.setEnabled(true);
-            Role roleUser = new Role();
-            roleUser.setName(EnumRole.USER.name());
-            roleUser.setReservedBySystem(false);
+            Role roleUser = roleRepository.findByName(EnumRole.USER.name());
             newUser.setRoles(Set.of(roleUser));
             for (Role role : newUser.getRoles()) {
                 roleRepository.save(role);

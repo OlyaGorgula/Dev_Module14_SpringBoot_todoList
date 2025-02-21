@@ -15,7 +15,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/login", "/registration", "/index_note").permitAll()
+                        .requestMatchers("/login", "/registration", "/index").permitAll()
                         .requestMatchers("/user/**").hasAnyAuthority(EnumRole.ADMIN.name())
                         .requestMatchers("/role/**").hasAnyAuthority(EnumRole.ADMIN.name())
                         .requestMatchers("/note/**").hasAnyAuthority(
@@ -25,7 +25,7 @@ public class SecurityConfiguration {
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/note/list")
+                        .defaultSuccessUrl("/index")
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/logout")

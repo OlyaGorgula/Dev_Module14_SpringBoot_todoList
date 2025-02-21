@@ -44,7 +44,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/index_note")
+    @GetMapping("/index")
     public ModelAndView indexPage() {
         ModelAndView result = new ModelAndView("index");
 
