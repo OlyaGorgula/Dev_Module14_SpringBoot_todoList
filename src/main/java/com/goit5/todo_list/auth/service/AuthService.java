@@ -17,17 +17,16 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-//public class AuthService implements UserDetailsService {
-public class AuthService {
+public class AuthService implements UserDetailsService {
     private final UserRepository usersRepository;
     private final RoleRepository roleRepository;
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        UserByDefault.isFirstRun(usersRepository, roleRepository);
-//
-//        return usersRepository.findByEmail(username);
-//    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserByDefault.isFirstRun(usersRepository, roleRepository);
+
+        return usersRepository.findByEmail(username);
+    }
 
     public boolean registration(String email, String password) {
         boolean isThereIsAlreadySuchAnEmail;

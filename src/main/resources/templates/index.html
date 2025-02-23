@@ -26,7 +26,7 @@
 
                 <tr th:each="note: ${notes}">
                     <td class="fs-4 fw-semibold lh-sm" >
-                        <a th:href="'/note/edit?id=' + ${note.id}" th:text="${note.title}"></a>
+                        <p th:text="${note.title}"></p>
                     </td>
                 </tr>
             </table>
